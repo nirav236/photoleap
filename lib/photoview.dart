@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:photoleap/main.dart';
 
 class DestinationPage extends StatelessWidget {
-  final File? images;
+  ImagePickerController controller = Get.find();
 
-  const DestinationPage({super.key, required this.images});
+  DestinationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +15,17 @@ class DestinationPage extends StatelessWidget {
         title: const Text('Destination Page'),
       ),
       body: Center(
-        child: Container(
-          height: 400,
-          width: 400,
-          color: Colors.amber,
-          child: images != null
-              ? Image.file(
-                  images!,
-                  fit: BoxFit.cover,
-                )
-              : const Text('No Image Selected'),
-        ),
-      ),
+          child: Container(
+        height: 400,
+        width: 400,
+        color: Colors.amber,
+        child: controller.imagePath.isNotEmpty
+            ? Image(
+                image: FileImage(File(controller.imagePath.toString())),
+                fit: BoxFit.cover,
+              )
+            : const Text('No Image Selected'),
+      )),
     );
   }
 }
-

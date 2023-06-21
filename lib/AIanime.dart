@@ -1,6 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:photoleap/photoview.dart';
+
+import 'main.dart';
 
 class AIanime extends StatelessWidget {
   const AIanime({super.key});
@@ -11,7 +15,7 @@ class AIanime extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Photoleap"),
+        backgroundColor: Colors.black,
       ),
       body: Column(
         children: [
@@ -48,7 +52,12 @@ class AIanime extends StatelessWidget {
           ),
           const Spacer(),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () { Get.find<ImagePickerController>().getImage().then((value) =>
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return DestinationPage();
+                                    },
+                                  )));},
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),
@@ -75,7 +84,7 @@ class AIselfie extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Photoleap"),
+        backgroundColor: Colors.black,
       ),
       body: Column(
         children: [
@@ -112,7 +121,12 @@ class AIselfie extends StatelessWidget {
           ),
           const Spacer(),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {  Get.find<ImagePickerController>().getImage().then((value) =>
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return DestinationPage();
+                                    },
+                                  )));},
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),

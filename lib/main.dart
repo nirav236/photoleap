@@ -3,9 +3,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photoleap/AIanime.dart';
+import 'package:photoleap/AIroom.dart';
 import 'package:photoleap/photoview.dart';
 
 import 'AIscene.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.black, brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
-      home: AIselfie(),
+      home: MyHomePage(),
     );
   }
 }
@@ -38,6 +39,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  ImagePickerController controller = Get.put(ImagePickerController());
   File? _image;
 
   // This is the image picker
@@ -233,12 +235,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           InkWell(
                             onTap: () {
-                              _openImagePicker().then((value) =>
+                                Get.find<ImagePickerController>().getImage().then((value) =>
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
-                                      return DestinationPage(images: _image);
+                                      return DestinationPage();
                                     },
                                   )));
+                              // _openImagePicker().then((value) =>
+                              //     Navigator.push(context, MaterialPageRoute(
+                              //       builder: (context) {
+                              //         return DestinationPage(images: _image);
+                              //       },
+                              //     )));
                             },
                             child: CircleAvatar(
                               radius: 35,
@@ -274,18 +282,9 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
           ),
-          Container(
-            alignment: Alignment.bottomLeft,
-            padding: EdgeInsets.only(left: 20),
-            child: Text(
-              'AI edits',
-              style: TextStyle(
-                  fontFamily: "Popins",
-                  fontSize: 25,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
+        
+
+
           GridView.builder(
               shrinkWrap: true,
               physics: BouncingScrollPhysics(),
@@ -301,7 +300,16 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return AIscenes();
+                        return (index == 0
+                            ? AIscenes()
+                            : index == 3
+                                ? AIroom()
+                                : index == 4
+                                    ? AIanime()
+                                    : index == 5
+                                        ? AIselfie()
+                                        : AIscenes());
+                        //  AIscenes();
                       }));
                     },
                     child: Container(
@@ -409,54 +417,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class ListItem {
-  final IconData icon;
-  final String text;
-
-  ListItem({required this.icon, required this.text});
+class ImagePickerController extends GetxController {
+  RxString imagePath = ''.obs;
+  Future getImage() async {
+    final ImagePicker picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      imagePath.value = image.path.toString();
+    }
+  }
 }
-
-List<ListItem> itemList = [
-  ListItem(icon: FontAwesomeIcons.images, text: 'Edit photo'),
-  ListItem(icon: FontAwesomeIcons.penFancy, text: 'Remove\n object'),
-  ListItem(icon: FontAwesomeIcons.play, text: 'Animate'),
-  ListItem(icon: FontAwesomeIcons.star, text: 'Enhance'),
-  ListItem(icon: FontAwesomeIcons.water, text: 'Colorize'),
-  ListItem(icon: FontAwesomeIcons.wandMagicSparkles, text: 'Change BG'),
-];
-
-class ImageList {
-  final String imagepath;
-  final String text;
-  final IconData symbol;
-
-  ImageList(
-      {required this.imagepath, required this.text, required this.symbol});
-}
-
-List<ImageList> imageList = [
-  ImageList(
-      imagepath: "assets/image/AIscene.jpg",
-      text: 'AI Scenes',
-      symbol: FontAwesomeIcons.building),
-  ImageList(
-      imagepath: "assets/image/aitransform.jpg",
-      text: 'AI Transform',
-      symbol: FontAwesomeIcons.brush),
-  ImageList(
-      imagepath: "assets/image/text.jpg",
-      text: 'Text to image',
-      symbol: FontAwesomeIcons.textHeight),
-  ImageList(
-      imagepath: "assets/image/girl.jpg",
-      text: 'AI Room',
-      symbol: FontAwesomeIcons.building),
-  ImageList(
-      imagepath: "assets/image/anime.jpg",
-      text: 'AI Anime',
-      symbol: FontAwesomeIcons.medal),
-  ImageList(
-      imagepath: "assets/image/selfie.jpg",
-      text: 'AI Selfies',
-      symbol: FontAwesomeIcons.person),
-];

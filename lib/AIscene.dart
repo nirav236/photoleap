@@ -1,6 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:photoleap/photoview.dart';
+
+import 'main.dart';
 
 class AIscenes extends StatelessWidget {
   const AIscenes({super.key});
@@ -215,7 +219,14 @@ class AIscenes extends StatelessWidget {
           ),
           const Spacer(),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+               Get.find<ImagePickerController>().getImage().then((value) =>
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return DestinationPage();
+                                    },
+                                  )));
+            },
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),

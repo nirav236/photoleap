@@ -1,6 +1,11 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:photoleap/photoview.dart';
+
+import 'main.dart';
 
 
 class AIroom extends StatefulWidget {
@@ -26,7 +31,7 @@ class _AIroomState extends State<AIroom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Photoleap"),
+      backgroundColor: Colors.black,
       ),
       body: Column(
         children: [
@@ -63,7 +68,12 @@ class _AIroomState extends State<AIroom> {
           ),
           const Spacer(),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {  Get.find<ImagePickerController>().getImage().then((value) =>
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return DestinationPage();
+                                    },
+                                  )));},
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),
@@ -80,3 +90,58 @@ class _AIroomState extends State<AIroom> {
     );
   }
 }
+
+class ListItem {
+  final IconData icon;
+  final String text;
+
+  ListItem({required this.icon, required this.text});
+}
+
+List<ListItem> itemList = [
+  ListItem(icon: FontAwesomeIcons.images, text: 'Edit photo'),
+  ListItem(icon: FontAwesomeIcons.penFancy, text: 'Remove\n object'),
+  ListItem(icon: FontAwesomeIcons.play, text: 'Animate'),
+  ListItem(icon: FontAwesomeIcons.star, text: 'Enhance'),
+  ListItem(icon: FontAwesomeIcons.water, text: 'Colorize'),
+  ListItem(icon: FontAwesomeIcons.wandMagicSparkles, text: 'Change BG'),
+];
+
+class ImageList {
+  final String imagepath;
+  final String text;
+  final IconData symbol;
+
+  ImageList(
+      {required this.imagepath, required this.text, required this.symbol});
+}
+
+List<ImageList> imageList = [
+  ImageList(
+      imagepath: "assets/image/AIscene.jpg",
+      text: 'AI Scenes',
+      symbol: FontAwesomeIcons.building),
+  ImageList(
+      imagepath: "assets/image/aitransform.jpg",
+      text: 'AI Transform',
+      symbol: FontAwesomeIcons.brush),
+  ImageList(
+      imagepath: "assets/image/text.jpg",
+      text: 'Text to image',
+      symbol: FontAwesomeIcons.textHeight),
+  ImageList(
+      imagepath: "assets/image/girl.jpg",
+      text: 'AI Room',
+      symbol: FontAwesomeIcons.building),
+  ImageList(
+      imagepath: "assets/image/anime.jpg",
+      text: 'AI Anime',
+      symbol: FontAwesomeIcons.medal),
+  ImageList(
+      imagepath: "assets/image/selfie.jpg",
+      text: 'AI Selfies',
+      symbol: FontAwesomeIcons.person),
+];
+
+
+
