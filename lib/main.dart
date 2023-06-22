@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,10 +20,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.black, brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+          fontFamily: "Popins",
+          textTheme: TextTheme(
+              bodyText2: TextStyle(color: Colors.white),
+              bodyText1: TextStyle(color: Colors.white)),
+          canvasColor: Colors.black,
+          primaryColor: Colors.black,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                  Colors.purple), // Set the default button color here
+            ),
+          ),
+          appBarTheme: AppBarTheme(backgroundColor: Colors.black),
+          scaffoldBackgroundColor: Colors.black,
+          brightness: Brightness.light),
+      //  darkTheme: ThemeData(brightness: Brightness.dark),
       home: MyHomePage(),
     );
   }
@@ -40,20 +53,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   ImagePickerController controller = Get.put(ImagePickerController());
-  File? _image;
-
-  // This is the image picker
-  final _picker = ImagePicker();
-  // Implementing the image picker
-  Future<void> _openImagePicker() async {
-    final XFile? pickedImage =
-        await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
-      setState(() {
-        _image = File(pickedImage.path);
-      });
-    }
-  }
 
   List<String> drawer = [
     "What's new",
@@ -79,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           },
         ),
-        backgroundColor: Colors.black,
         title: const Center(
           child: Text(
             "Photoleap",
@@ -92,24 +90,18 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       drawer: Drawer(
-        backgroundColor: Colors.black,
         child: ListView(
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
             Container(
               height: 250,
-              color: Colors.black,
             ),
             Divider(color: Colors.white, height: 1.6),
             ListTile(
               title: const Text(
                 "What's new",
-                style: TextStyle(
-                    fontFamily: "Popins",
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -121,11 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text(
                 'Open source license',
-                style: TextStyle(
-                    fontFamily: "Popins",
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -137,11 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text(
                 'Terms of use',
-                style: TextStyle(
-                    fontFamily: "Popins",
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -153,11 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text(
                 'AI art terms of use ',
-                style: TextStyle(
-                    fontFamily: "Popins",
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -169,11 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text(
                 'Refund and  cancellation policy',
-                style: TextStyle(
-                    fontFamily: "Popins",
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -185,11 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text(
                 'Privacy policy',
-                style: TextStyle(
-                    fontFamily: "Popins",
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -202,11 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text(
                 'Contact Us',
-                style: TextStyle(
-                    fontFamily: "Popins",
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               onTap: () {
                 // Update the state of the app
@@ -235,12 +203,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           InkWell(
                             onTap: () {
-                                Get.find<ImagePickerController>().getImage().then((value) =>
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) {
-                                      return DestinationPage();
-                                    },
-                                  )));
+                              Get.find<ImagePickerController>().getImage().then(
+                                  (value) =>
+                                      Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) {
+                                          return DestinationPage();
+                                        },
+                                      )));
                               // _openImagePicker().then((value) =>
                               //     Navigator.push(context, MaterialPageRoute(
                               //       builder: (context) {
@@ -273,18 +242,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text(
                       item.text,
                       style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                          fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ],
                 );
               },
             ),
           ),
-        
-
-
           GridView.builder(
               shrinkWrap: true,
               physics: BouncingScrollPhysics(),
@@ -317,7 +281,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           image: DecorationImage(
                               image: AssetImage(image.imagepath),
                               fit: BoxFit.cover),
-                          // color: Colors.white,
                           borderRadius: BorderRadius.circular(15)),
                       child: Stack(
                         children: [
@@ -328,7 +291,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               children: [
                                 Icon(
                                   image.symbol,
-                                  color: Colors.blue,
+                                  color: Colors.white,
                                 ),
                                 SizedBox(
                                   width: 10,
@@ -337,9 +300,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   image.text,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                      fontFamily: "Popins",
                                       fontSize: 20,
-                                      color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ],
@@ -374,7 +335,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text(
                           "D&D Avatars\nWhich charactor\nare you?Start your\nadventure to find\nout...",
                           style: TextStyle(
-                            color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -395,10 +355,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Text(
                                 'Try it',
                                 style: TextStyle(
-                                    fontFamily: "Popins",
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),

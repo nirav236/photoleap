@@ -27,7 +27,7 @@ class AIscenes extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        
       ),
       body: Column(
         children: [
@@ -48,9 +48,8 @@ class AIscenes extends StatelessWidget {
                       child: Text(
                         "For best results",
                         style: TextStyle(
-                            fontFamily: "Popins",
+                            
                             fontSize: 28,
-                            color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -62,9 +61,8 @@ class AIscenes extends StatelessWidget {
                       child: Text(
                         "Urban landscapes,photographed in the day\ntime,ground level perspective",
                         style: TextStyle(
-                            fontFamily: "Popins",
+                         
                             fontSize: 18,
-                            color: Colors.white,
                             fontWeight: FontWeight.w400),
                       ),
                     ),
@@ -109,7 +107,7 @@ class AIscenes extends StatelessWidget {
                                   ),
                                   child: const Icon(
                                     Icons.check,
-                                    color: Colors.white,
+                                   
                                     size: 15.0,
                                   ),
                                 ),
@@ -141,9 +139,8 @@ class AIscenes extends StatelessWidget {
                       child: Text(
                         "Avoid using",
                         style: TextStyle(
-                            fontFamily: "Popins",
+                           
                             fontSize: 28,
-                            color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -155,9 +152,8 @@ class AIscenes extends StatelessWidget {
                       child: Text(
                         "Photos of people or animals,wild landscapes,\nphotos taken at night or in low light",
                         style: TextStyle(
-                            fontFamily: "Popins",
+                           
                             fontSize: 18,
-                            color: Colors.white,
                             fontWeight: FontWeight.w400),
                       ),
                     ),
@@ -202,7 +198,7 @@ class AIscenes extends StatelessWidget {
                                   ),
                                   child: const Icon(
                                     Icons.close,
-                                    color: Colors.white,
+                                    
                                     size: 15.0,
                                   ),
                                 ),
@@ -220,22 +216,23 @@ class AIscenes extends StatelessWidget {
           const Spacer(),
           ElevatedButton(
             onPressed: () {
-               Get.find<ImagePickerController>().getImage().then((value) =>
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) {
-                                      return DestinationPage();
-                                    },
-                                  )));
+              Get.find<ImagePickerController>()
+                  .getImage()
+                  .then((value) => Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const DestinationPage();
+                        },
+                      )));
             },
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),
-              backgroundColor: Colors.purple,
+            
               shape: const StadiumBorder(),
             ),
             child: const Text(
               "Continue",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(fontSize: 20),
             ),
           ),
         ],

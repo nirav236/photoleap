@@ -31,7 +31,7 @@ class _AIroomState extends State<AIroom> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.black,
+   
       ),
       body: Column(
         children: [
@@ -41,18 +41,18 @@ class _AIroomState extends State<AIroom> {
             child: Text(
               "AI filters to redecorate and reimagine",
               style: TextStyle(
-                  fontFamily: "Popins",
+            
                   fontSize: 18,
-                  color: Colors.white,
+           
                   fontWeight: FontWeight.bold),
             ),
           ),
           const Text(
             " your rooms.",
             style: TextStyle(
-                fontFamily: "Popins",
+           
                 fontSize: 18,
-                color: Colors.white,
+               
                 fontWeight: FontWeight.bold),
           ),
           const Padding(
@@ -60,9 +60,9 @@ class _AIroomState extends State<AIroom> {
             child: Text(
               "AI is unrefined and unpredictable, but it sure is\nfun. Keep experimenting to get the right result.",
               style: TextStyle(
-                  fontFamily: "Popins",
+                
                   fontSize: 16,
-                  color: Colors.white,
+             
                   fontWeight: FontWeight.w400),
             ),
           ),
@@ -71,18 +71,19 @@ class _AIroomState extends State<AIroom> {
             onPressed: () {  Get.find<ImagePickerController>().getImage().then((value) =>
                                   Navigator.push(context, MaterialPageRoute(
                                     builder: (context) {
+                                      // ignore: prefer_const_constructors
                                       return DestinationPage();
                                     },
                                   )));},
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),
-              backgroundColor: Colors.purple,
+          
               shape: const StadiumBorder(),
             ),
             child: const Text(
               "Continue",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle( fontSize: 20),
             ),
           ),
         ],

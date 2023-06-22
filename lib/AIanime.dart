@@ -9,14 +9,10 @@ import 'main.dart';
 class AIanime extends StatelessWidget {
   const AIanime({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-      ),
+      appBar: AppBar(),
       body: Column(
         children: [
           Container(height: 500, width: double.infinity, color: Colors.amber),
@@ -24,49 +20,39 @@ class AIanime extends StatelessWidget {
             padding: EdgeInsets.only(top: 15),
             child: Text(
               "Filters to give your photos a splash of",
-              style: TextStyle(
-                  fontFamily: "Popins",
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           const Text(
             "anime magic.",
-            style: TextStyle(
-                fontFamily: "Popins",
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 25),
             child: Text(
               "AI is unrefined and unpredictable, but it sure is\nfun. Keep experimenting to get the right result.",
-              style: TextStyle(
-                  fontFamily: "Popins",
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
           ),
           const Spacer(),
           ElevatedButton(
-            onPressed: () { Get.find<ImagePickerController>().getImage().then((value) =>
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) {
-                                      return DestinationPage();
-                                    },
-                                  )));},
+            onPressed: () {
+              Get.find<ImagePickerController>()
+                  .getImage()
+                  .then((value) => Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const DestinationPage();
+                        },
+                      )));
+            },
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),
-              backgroundColor: Colors.purple,
               shape: const StadiumBorder(),
             ),
             child: const Text(
               "Continue",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(fontSize: 20),
             ),
           ),
         ],
@@ -78,14 +64,10 @@ class AIanime extends StatelessWidget {
 class AIselfie extends StatelessWidget {
   const AIselfie({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-      ),
+      appBar: AppBar(),
       body: Column(
         children: [
           Container(height: 500, width: double.infinity, color: Colors.amber),
@@ -93,49 +75,39 @@ class AIselfie extends StatelessWidget {
             padding: EdgeInsets.only(top: 15),
             child: Text(
               "Reimagine your whole world, one selfie",
-              style: TextStyle(
-                  fontFamily: "Popins",
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           const Text(
             "at a time!",
-            style: TextStyle(
-                fontFamily: "Popins",
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 25),
             child: Text(
               "AI is unrefined and unpredictable, but it sure is\nfun. Keep experimenting to get the right result.",
-              style: TextStyle(
-                  fontFamily: "Popins",
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
             ),
           ),
           const Spacer(),
           ElevatedButton(
-            onPressed: () {  Get.find<ImagePickerController>().getImage().then((value) =>
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) {
-                                      return DestinationPage();
-                                    },
-                                  )));},
+            onPressed: () {
+              Get.find<ImagePickerController>()
+                  .getImage()
+                  .then((value) => Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const DestinationPage();
+                        },
+                      )));
+            },
             style: ElevatedButton.styleFrom(
               padding:
                   const EdgeInsets.symmetric(horizontal: 120.0, vertical: 20.0),
-              backgroundColor: Colors.purple,
               shape: const StadiumBorder(),
             ),
             child: const Text(
               "Continue",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(fontSize: 20),
             ),
           ),
         ],

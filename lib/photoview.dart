@@ -3,10 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photoleap/main.dart';
 
-class DestinationPage extends StatelessWidget {
-  ImagePickerController controller = Get.find();
+//import 'api.dart';
 
-  DestinationPage({super.key});
+// ignore: must_be_immutable
+class DestinationPage extends StatefulWidget {
+  const DestinationPage({super.key});
+
+  @override
+  State<DestinationPage> createState() => _DestinationPageState();
+}
+
+class _DestinationPageState extends State<DestinationPage> {
+  ImagePickerController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +22,8 @@ class DestinationPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Destination Page'),
       ),
-      body: Center(
-          child: Container(
-        height: 400,
+      body: Container(
+        height: 500,
         width: 400,
         color: Colors.amber,
         child: controller.imagePath.isNotEmpty
@@ -25,7 +32,7 @@ class DestinationPage extends StatelessWidget {
                 fit: BoxFit.cover,
               )
             : const Text('No Image Selected'),
-      )),
+      ),
     );
   }
 }
