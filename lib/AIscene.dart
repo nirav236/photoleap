@@ -4,27 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photoleap/photoview.dart';
 
-import 'main.dart';
+import 'class.dart';
 
 class AIscenes extends StatelessWidget {
   const AIscenes({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> imagePaths = [
-      "assets/image/build1.jpeg",
-      "assets/image/build2.jpeg",
-      "assets/image/build3.jpeg",
-      "assets/image/build4.jpeg",
-      // Add more image paths here
-    ];
-    List<String> imagePaths2 = [
-      "assets/image/b1.jpeg",
-      "assets/image/b2.jpeg",
-      "assets/image/b3.jpeg",
-      "assets/image/b4.jpeg",
-      // Add more image paths here
-    ];
+  
     return Scaffold(
       appBar: AppBar(
         

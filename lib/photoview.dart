@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:photoleap/main.dart';
+
+import 'class.dart';
 
 //import 'api.dart';
 

@@ -1,13 +1,14 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, duplicate_ignore
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:photoleap/AIanime.dart';
 import 'package:photoleap/AIroom.dart';
+import 'package:photoleap/TexttoImage.dart';
 import 'package:photoleap/photoview.dart';
 
 import 'AIscene.dart';
+import 'class.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           fontFamily: "Popins",
           textTheme: TextTheme(
+              // ignore: deprecated_member_use
               bodyText2: TextStyle(color: Colors.white),
               bodyText1: TextStyle(color: Colors.white)),
           canvasColor: Colors.black,
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           brightness: Brightness.light),
       //  darkTheme: ThemeData(brightness: Brightness.dark),
-      home: MyHomePage(),
+      home: TexttoImage(),
     );
   }
 }
@@ -54,14 +56,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   ImagePickerController controller = Get.put(ImagePickerController());
 
-  List<String> drawer = [
-    "What's new",
-    "Open source licence"
-        "Terms of use",
-    "AI art terms of use",
-    "Refund and cancellation Policy",
-    "Private policy"
-  ];
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -371,16 +365,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
-  }
-}
-
-class ImagePickerController extends GetxController {
-  RxString imagePath = ''.obs;
-  Future getImage() async {
-    final ImagePicker picker = ImagePicker();
-    final image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      imagePath.value = image.path.toString();
-    }
   }
 }

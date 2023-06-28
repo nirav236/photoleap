@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:before_after_image_slider_nullsafty/before_after_image_slider_nullsafty.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -44,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Center(
         child: removedbg
-             ? Image.memory(image!)
+            ? Image.memory(image!)
             // BeforeAfter(
             //     beforeImage: Image.file(File(imagePath)),
             //     afterImage: Image.memory(image!),
@@ -76,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     setState(() {
                       isloading = true;
                     });
-                    image = await Api.removebg(imagePath);
+                    image = await Api().removebg(imagePath);
 
                     if (image != null) {
                       removedbg = true;

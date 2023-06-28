@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photoleap/photoview.dart';
 
-import 'main.dart';
+import 'class.dart';
 
 class AIanime extends StatelessWidget {
   const AIanime({super.key});
@@ -115,3 +115,7 @@ class AIselfie extends StatelessWidget {
     );
   }
 }
+
+
+
+
